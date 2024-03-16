@@ -4,10 +4,9 @@
  *
  * Eine Erweiterung der Smarty Template Engine mit zusätzlichen Methoden
  * 1. Extraktion von HTML-Elementen
- * 2. ...
  *
  * Autor:   K3nguruh <k3nguruh at mail dot de>
- * Version: 0.0.1
+ * Version: 1.0.1
  * Datum:   2024-03-07 21:15
  * Lizenz:  MIT-Lizenz
  */
@@ -67,7 +66,8 @@ class SmartyExt extends Smarty
 
     // Lade das Template mit unterdrückten Fehlermeldungen (E_WARNING),
     // da wir möglicherweise mit unvollständigem HTML / HTML5 arbeiten
-    @$dom->loadHTML($template);
+    // FIX: UTF-8
+    @$dom->loadHTML('<meta charset="UTF-8">' . $template);
 
     // Finde das Element mit der angegebenen ID, dem Namen oder der Klasse
     $xpath = new DOMXPath($dom);
